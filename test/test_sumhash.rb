@@ -42,4 +42,19 @@ class TestSumhash < Test::Unit::TestCase
 
     assert_equal({ n: 4.2, m: 3.3, os: OpenStruct.new(x: 2.2, y: 4.2) }, sum)
   end
+
+  def test_unary_minus
+    assert_equal( { n: -4.2, m: -3.3, os: OpenStruct.new(x: -2.2, y: 4.2), s: 'str' },
+                 -{ n: 4.2, m: 3.3, os: OpenStruct.new(x: 2.2, y: -4.2), s: 'str' })
+  end
+
+  def test_division
+    assert_equal( { n: 2.1, m: 3.2, os: OpenStruct.new(x: 1.1, y: 2.1), s: 'str' },
+                  { n: 4.2, m: 6.4, os: OpenStruct.new(x: 2.2, y: 4.2), s: 'str' } / 2)
+  end
+
+  def test_multiplication
+    assert_equal( { n: 4.2, m: 6.4, os: OpenStruct.new(x: 2.2, y: 4.2), s: 'str' },
+                  { n: 2.1, m: 3.2, os: OpenStruct.new(x: 1.1, y: 2.1), s: 'str' } * 2)
+  end
 end
