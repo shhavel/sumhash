@@ -12,12 +12,27 @@ Add Sumhash to your Gemfile:
 gem 'sumhash', :git => 'git://github.com/shhavel/sumhash.git'
 ```
 
-## Example
+## Examples
+
+Simple usage
 
 ```rb
-hashes = [{one: 1.1, two: 2.3, three: 3.4}, {two: 3.2, four: 4.5}, {one: 1.0, two: 2.0}]
+{one: 1.0, two: 2.3} + {one: 2.0, two: 2.0}
 
-hashes.inject(:+)
+```
+
+This will result in:
+
+```sh
+{one: 3.0, two: 4.3}
+```
+
+
+With different keys
+
+```rb
+{one: 1.1, two: 2.3, three: 3.4} + {two: 3.2, four: 4.5} + {one: 1.0, two: 2.0}
+
 ```
 
 This will result in:
