@@ -1,18 +1,23 @@
 class OpenStruct
+  NUMBER_CLASSES = [Integer, Fixnum, Bignum, Float, Rational]
+  SUPPORTED_CLASSES = NUMBER_CLASSES + [Hash, OpenStruct]
+
   def _fields
     @table.keys.map{|k| k.to_sym }
   end
 
+  # Plus
   def +(os)
     (self._fields + os._fields).inject(OpenStruct.new()) do |sum, f|
-      sum.send(:"#{f}=", self.send(f) && os.send(f) ? self.send(f) + os.send(f) : self.send(f) || os.send(f))
+      sum.send(:"#{f}=", sum(self.send(f), os.send(f)))
       sum
     end
   end
 
+  # Minus
   def -(os)
     (self._fields + os._fields).inject(OpenStruct.new()) do |sum, f|
-      sum.send(:"#{f}=", self.send(f) && os.send(f) ? self.send(f) - os.send(f) : self.send(f) || os.send(f))
+      sum.send(:"#{f}=", sum(self.send(f), os.send(f), :-))
       sum
     end
   end
@@ -21,7 +26,7 @@ class OpenStruct
   def -@
     self._fields.inject(OpenStruct.new()) do |res, f|
       v = self.send(f)
-      res.send(:"#{f}=", v.respond_to?(:-@) ? -v : v)
+      res.send(:"#{f}=", SUPPORTED_CLASSES.include?(v.class) ? -v : v)
       res
     end
   end
@@ -31,21 +36,33 @@ class OpenStruct
     self
   end
 
+  # Division
   def /(num)
-    raise TypeError, "#{num.class} can't be coerced into Float"  unless [Integer, Fixnum, Bignum, Float, Rational].include? num.class
+    raise TypeError, "#{num.class} can't be coerced into Float"  unless NUMBER_CLASSES.include? num.class
     self._fields.inject(OpenStruct.new()) do |res, f|
       v = self.send(f)
-      res.send(:"#{f}=", v.respond_to?(:/) ? v/num.to_f : v)
+      res.send(:"#{f}=", SUPPORTED_CLASSES.include?(v.class) ? v/num.to_f : v)
       res
     end
   end
 
+  # Multiplication
   def *(num)
-    raise TypeError, "#{num.class} can't be coerced into Float"  unless [Integer, Fixnum, Bignum, Float, Rational].include? num.class
+    raise TypeError, "#{num.class} can't be coerced into Float"  unless NUMBER_CLASSES.include? num.class
     self._fields.inject(OpenStruct.new()) do |res, f|
       v = self.send(f)
-      res.send(:"#{f}=", v.respond_to?(:*) && !v.kind_of?(String) ? v*num.to_f : v)
+      res.send(:"#{f}=", SUPPORTED_CLASSES.include?(v.class) && !v.kind_of?(String) ? v*num.to_f : v)
       res
+    end
+  end
+
+  private
+  # Can sum Objects if: 1) both numbers; 2) both Hashes; 3) both OpenStructs.
+  def sum(n, m, sign=:+)
+    if (NUMBER_CLASSES.include?(n.class) && NUMBER_CLASSES.include?(m.class)) || (n.class == Hash && m.class == Hash) || (n.class == OpenStruct && m.class == OpenStruct)
+      n.send(sign, m)
+    else
+      n || m
     end
   end
 end
