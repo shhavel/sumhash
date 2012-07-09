@@ -1,5 +1,4 @@
-require "ostruct"
-require "#{File.expand_path('../')}/lib/sumhash.rb"
+require "sumhash"
 require "test/unit"
 
 class TestPlus < Test::Unit::TestCase

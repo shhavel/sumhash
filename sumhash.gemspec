@@ -11,11 +11,24 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/shhavel/sumhash"
   s.summary = %q{Sum operations for Hash & OpenStruct classes}
   s.description = %q{This gem provides summing operations to Hashes and OpenStructs. Works with nested structures. If you need a feature added, send me a message on Github!}
-
   s.rubyforge_project = "sumhash"
-
-  s.files = `git ls-files`.split("\n")
-  s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files = [
+    "sumhash.gemspec",
+    "lib/sumhash.rb",
+    "lib/sumhash/hash.rb",
+    "lib/sumhash/ostruct.rb",
+    "lib/sumhash/version.rb",
+    "test/test_division.rb",
+    "test/test_multiplication.rb",
+    "test/test_plus.rb",
+    "test/test_unary_minus.rb",
+  ]
+  s.test_files = [
+    "test/test_division.rb",
+    "test/test_multiplication.rb",
+    "test/test_plus.rb",
+    "test/test_unary_minus.rb",
+  ]
   s.require_paths = ["lib"]
 end
+
