@@ -4,18 +4,12 @@ class Hash
 
   # Plus
   def +(hash)
-    (self.keys + hash.keys).inject({}) do |sum, k|
-      sum[k] = sum(self[k], hash[k])
-      sum
-    end
+    self.merge(hash) { |key, v1, v2| sum(v1, v2) }
   end
 
   # Minus
   def -(hash)
-    (self.keys + hash.keys).inject({}) do |sum, k|
-      sum[k] = sum(self[k], hash[k], :-)
-      sum
-    end
+    self.merge(hash) { |key, v1, v2| sum(v1, v2, :-) }
   end
 
   # Unary minus
