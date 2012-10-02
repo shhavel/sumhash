@@ -1,9 +1,8 @@
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 
 spec = eval(File.read('sumhash.gemspec'))
 
-Rake::GemPackageTask.new(spec) do |pkg|
-end
+Gem::PackageTask.new(spec)
 
 require 'rake/testtask'
 Rake::TestTask.new do |t|
@@ -11,3 +10,4 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['test/test_*.rb']
 end
 
+task :default => :test

@@ -1,4 +1,4 @@
-class OpenStruct
+module Sumhash::OpenStruct
   NUMBER_CLASSES = [Integer, Fixnum, Bignum, Float, Rational]
   SUPPORTED_CLASSES = NUMBER_CLASSES + [Hash, OpenStruct]
 
