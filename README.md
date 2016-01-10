@@ -1,4 +1,4 @@
-# Sumhash [![Build Status](https://api.travis-ci.org/shhavel/sumhash.svg?branch=master)](https://travis-ci.org/shhavel/sumhash)
+# Sumhash [![Build Status](https://api.travis-ci.org/shhavel/sumhash.svg?branch=master)](https://travis-ci.org/shhavel/sumhash) [![Gem Version](https://badge.fury.io/rb/sumhash.svg)](https://badge.fury.io/rb/sumhash)
 
 Provides summation operation for `Hash` and `OpenStruct`
 
