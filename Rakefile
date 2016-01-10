@@ -1,8 +1,4 @@
-require 'rubygems/package_task'
-
-spec = eval(File.read('sumhash.gemspec'))
-
-Gem::PackageTask.new(spec)
+require 'bundler/gem_tasks'
 
 require 'rake/testtask'
 Rake::TestTask.new do |t|

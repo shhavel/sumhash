@@ -1,4 +1,4 @@
-# Sumhash
+# Sumhash [![Build Status](https://api.travis-ci.org/shhavel/sumhash.svg?branch=master)](https://travis-ci.org/shhavel/sumhash)
 
 Provides summing operations to Hashes and OpenStructs
 
@@ -8,7 +8,7 @@ Works with nested structures
 
 Add Sumhash to your Gemfile:
 
-```rb
+```ruby
 gem 'sumhash', :git => 'git://github.com/shhavel/sumhash.git'
 ```
 
@@ -16,41 +16,43 @@ gem 'sumhash', :git => 'git://github.com/shhavel/sumhash.git'
 
 Simple usage
 
-```rb
-{one: 1.0, two: 2.3} + {one: 2.0, two: 2.0}
+```ruby
+{ one: 1.0, two: 2.3 } + { one: 2.0, two: 2.0 }
 
 ```
 
 This will result in:
 
-```sh
-{one: 3.0, two: 4.3}
+```ruby
+{ one: 3.0, two: 4.3 }
 ```
 
 
 With different keys
 
-```rb
-{one: 1.1, two: 2.3, three: 3.4} + {two: 3.2, four: 4.5} + {one: 1.0, two: 2.0}
-
+```ruby
+{ one: 1.1, two: 2.3, three: 3.4 } + { two: 3.2, four: 4.5 } + { one: 1.0, two: 2.0 }
 ```
 
 This will result in:
 
-```sh
-{one: 2.1, two: 7.5, three: 3.4, four: 4.5}
+```ruby
+{ one: 2.1, two: 7.5, three: 3.4, four: 4.5 }
 ```
 
 ## Example with nested OpenStruct
 
-```rb
-hashes = [{one: 1, two: 2, resume: OpenStruct.new(result: 10)}, {two: 2, resume: OpenStruct.new(result: 20)}]
+```ruby
+hashes = [
+  { one: 1, two: 2, resume: OpenStruct.new(result: 10) },
+  { two: 2, resume: OpenStruct.new(result: 20) }
+]
 
-hashes.inject(:+)
+hashes.reduce(:+)
 ```
 
 This will result in:
 
-```sh
-{one: 1, two: 4, resume: OpenStruct.new(result: 30)}
+```ruby
+{ one: 1, two: 4, resume: OpenStruct.new(result: 30) }
 ```
