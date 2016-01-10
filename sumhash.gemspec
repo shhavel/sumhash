@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name = "sumhash"
   s.version = Sumhash::VERSION
   s.platform = Gem::Platform::RUBY
-  s.authors = ["Alex Avoyants"]
+  s.authors = ["Oleksandr Avoiants", "Andrii Dmytrenko", "Alexey Grachov"]
   s.email = ["shhavel@gmail.com"]
   s.homepage = "https://github.com/shhavel/sumhash"
-  s.summary = %q{Sum operations for Hash & OpenStruct classes}
-  s.description = %q{This gem provides summing operations to Hashes and OpenStructs. Works with nested structures. If you need a feature added, send me a message on Github!}
+  s.summary = %q{Summation operation for Hash and OpenStruct}
+  s.description = %q{Provides summation operation to Hash and OpenStruct. Works with nested structures.}
   s.rubyforge_project = "sumhash"
   s.files = [
     "sumhash.gemspec",
@@ -31,4 +31,3 @@ Gem::Specification.new do |s|
   ]
   s.require_paths = ["lib"]
 end
-

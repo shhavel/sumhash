@@ -39,7 +39,7 @@ Result:
 { one: 2.1, two: 7.5, three: 3.4, four: 4.5 }
 ```
 
-## `Hash`es with nested `OpenStruct`
+`Hash`es with nested `OpenStruct`
 
 ```ruby
 hashes = [
@@ -55,3 +55,11 @@ Result:
 ```ruby
 { one: 1, two: 4, resume: OpenStruct.new(result: 30) }
 ```
+
+## Contributing
+
+1. Fork it ( https://github.com/shhavel/sumhash/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
