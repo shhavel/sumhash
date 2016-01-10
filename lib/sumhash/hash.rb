@@ -4,12 +4,12 @@ module Sumhash::Hash
 
   # Plus
   def +(hash)
-    self.merge(hash) { |key, v1, v2| sum(v1, v2) }
+    self.merge(hash) { |_, v1, v2| sum(v1, v2) }
   end
 
   # Minus
   def -(hash)
-    self.merge(hash) { |key, v1, v2| sum(v1, v2, :-) }
+    self.merge(hash) { |_, v1, v2| sum(v1, v2, :-) }
   end
 
   # Unary minus

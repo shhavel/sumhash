@@ -8,7 +8,7 @@ module Sumhash::OpenStruct
 
   # Plus
   def +(os)
-    (self._fields + os._fields).inject(OpenStruct.new()) do |sum, f|
+    (self._fields + os._fields).inject(OpenStruct.new) do |sum, f|
       sum.__send__(:"#{f}=", sum(self.__send__(f), os.__send__(f)))
       sum
     end
@@ -16,7 +16,7 @@ module Sumhash::OpenStruct
 
   # Minus
   def -(os)
-    (self._fields + os._fields).inject(OpenStruct.new()) do |sum, f|
+    (self._fields + os._fields).inject(OpenStruct.new) do |sum, f|
       sum.__send__(:"#{f}=", sum(self.__send__(f), os.__send__(f), :-))
       sum
     end
@@ -24,7 +24,7 @@ module Sumhash::OpenStruct
 
   # Unary minus
   def -@
-    self._fields.inject(OpenStruct.new()) do |res, f|
+    self._fields.inject(OpenStruct.new) do |res, f|
       v = self.__send__(f)
       res.__send__(:"#{f}=", SUPPORTED_CLASSES.include?(v.class) ? -v : v)
       res
@@ -38,8 +38,8 @@ module Sumhash::OpenStruct
 
   # Division
   def /(num)
-    raise TypeError, "#{num.class} can't be coerced into Float"  unless NUMBER_CLASSES.include? num.class
-    self._fields.inject(OpenStruct.new()) do |res, f|
+    raise TypeError, "#{num.class} can't be coerced into Float" unless NUMBER_CLASSES.include? num.class
+    self._fields.inject(OpenStruct.new) do |res, f|
       v = self.__send__(f)
       res.__send__(:"#{f}=", SUPPORTED_CLASSES.include?(v.class) ? v / num.to_f : v)
       res
@@ -48,8 +48,8 @@ module Sumhash::OpenStruct
 
   # Multiplication
   def *(num)
-    raise TypeError, "#{num.class} can't be coerced into Float"  unless NUMBER_CLASSES.include? num.class
-    self._fields.inject(OpenStruct.new()) do |res, f|
+    raise TypeError, "#{num.class} can't be coerced into Float" unless NUMBER_CLASSES.include? num.class
+    self._fields.inject(OpenStruct.new) do |res, f|
       v = self.__send__(f)
       res.__send__(:"#{f}=", SUPPORTED_CLASSES.include?(v.class) && !v.kind_of?(String) ? v * num.to_f : v)
       res
